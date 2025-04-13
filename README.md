@@ -20,5 +20,7 @@ Bash – Shell scripts to automate commands
 CMD – Running scripts and infrastructure commands
 
 🛠️ Setup Instructions
+```
 git clone https://github.com/your-username/your-repo.git
 cd your-repo
+```
