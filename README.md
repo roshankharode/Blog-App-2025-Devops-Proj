@@ -6,24 +6,31 @@ This project demonstrates a complete CI/CD pipeline built using Jenkins, Terrafo
 
 Infrastructure provisioning with Terraform
 
-Docker image building & pushing to Docker Hub
+ᵒ Docker image building & pushing to Docker Hub
 
-Deployment via Jenkins Pipelines
+ᵒ Deployment via Jenkins Pipelines
 
-Everything is connected in an efficient, hands-free CI/CD workflow.
+ᵒ Everything is connected in an efficient, hands-free CI/CD workflow.
 
 
 
 🔧 Tech Stack
 •  Terraform – Infrastructure as Code for provisioning AWS resources
+
 •  AWS – Hosting for EC2, IAM roles.
+
 •  Jenkins – CI/CD automation
+
 •  Docker – Containerization and image management
+
 •  Docker Hub – Image registry
+
 •  Bash – Shell scripts to automate commands
+
 •  CMD – Running scripts and infrastructure commands
 
 🛠️ Setup Instructions
+
 1️⃣ Clone Below Repo in your local Machine
 ```
 git clone -b master https://github.com/roshankharode/Blog-App-2025-Devops-Proj.git
@@ -33,6 +40,7 @@ cd Blog-App-2025-Devops-Proj/Terraform/
 ![image](https://github.com/user-attachments/assets/457651bb-3b51-42be-82aa-5085c269ac05)
 
 2️⃣ Create a terraform.tfvars File
+
 Inside the Terraform/ folder, create a file named terraform.tfvars and add your AWS IAM credentials like below:
 
 ```
@@ -50,9 +58,9 @@ Press enter Until SSH key Creation
 
 ![image](https://github.com/user-attachments/assets/e537aa0c-e0f3-4e71-bbce-2838366ffa0f)
 
-After Creation Run Step Commands
 
 4️⃣ Provision Infrastructure with Terraform
+
 Initialize and apply Terraform scripts:
 
 ![image](https://github.com/user-attachments/assets/1dc2ab5a-1a6b-4e15-ae18-227cd5c0ba66)
@@ -71,6 +79,7 @@ Also check your AWS EC2 console:
 
 
 5️⃣ Connect to the EC2 Instance via SSH
+
 Replace <YOUR-IP> with the actual public IP from Terraform:
 ```
 ssh -i "ssh_key" ubuntu@<Your IP Address>
@@ -80,6 +89,7 @@ ssh -i "ssh_key" ubuntu@<Your IP Address>
 Now Succesfullly Infra created and connected
 
 6️⃣ Install Jenkins and Prerequisites
+
 On the EC2 instance:
 
 ```
@@ -90,6 +100,7 @@ bash Jenkins_Installtion.sh
 ![image](https://github.com/user-attachments/assets/0cdf75d2-c862-4cc9-a8f8-ee5b6c96fe28)
 
 7️⃣ Jenkins Initial Setup
+
 Get the initial admin password:
 ```
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
@@ -101,20 +112,19 @@ Paste it into the Jenkins setup UI:
 
 Enter Passworrd in Administration feild
 
+Continue with setup:
+1 - Install suggested plugins
+2 - Create admin user
+3 - Access the Jenkins dashboard
+
 ![image](https://github.com/user-attachments/assets/5186b71e-1976-475c-8f9c-bd95c4de6460)
 
 
 ![image](https://github.com/user-attachments/assets/29dde65c-896c-4071-afb2-9dd68b9d0e27)
 
-Continue with setup:
-
-Install suggested plugins
-
-Create admin user
-
-Access the Jenkins dashboard
 
 ![image](https://github.com/user-attachments/assets/6b964f1d-1d12-48b9-b44d-1e2190d39cbd)
+
 
 ![image](https://github.com/user-attachments/assets/4417dff9-2561-4663-b5f6-d541649f2d63)
 
@@ -123,13 +133,13 @@ Create user using your Credintials to set Usernname and Password
 ![image](https://github.com/user-attachments/assets/15477b76-411d-4912-a638-ed5266e516f2)
 
 🧱 Create a Jenkins Pipeline
+
 Click New Item in Jenkins dashboard
 
 Choose Pipeline, give it a name
 
 ![image](https://github.com/user-attachments/assets/78150cda-6635-4ed7-85d0-1218d0bb845c)
 
-Click Apply > Save
 
 ![image](https://github.com/user-attachments/assets/be901165-a7e3-4b67-a895-c9b68d2b1c15)
 
@@ -142,6 +152,7 @@ and Insert in Pipleine code and click on apply > save
 ![image](https://github.com/user-attachments/assets/d168584e-265d-4348-af3f-c8dbed2c3a3e)
 
 🔐 Grant Jenkins Permission to Run Sudo Commands
+
 Edit the sudoers file:
 
 ```
@@ -161,7 +172,8 @@ Ctrl + X
 
 ![image](https://github.com/user-attachments/assets/7eb567f9-aa6e-4067-a3a4-dec3e7aff5ab)
 
-G🔑 Configure Docker Hub Credentials in Jenkins
+🔑 Configure Docker Hub Credentials in Jenkins
+
 Go to Manage Jenkins > Credentials > Global
 
 Add new credentials:
@@ -175,24 +187,26 @@ Password: Docker Hub access token
 ![image](https://github.com/user-attachments/assets/9844eab2-4540-4299-b6de-416666bcdb60)
 
 📦 Install Required Jenkins Plugins
+
 Install these plugins:
 
-Pipeline Stage View
+1 - Pipeline Stage View
 
-Docker
+2 - Docker
 
-Then restart Jenkins:
 
 ![image](https://github.com/user-attachments/assets/21613ae0-87fc-4ce9-9aec-04ab4380dc05)
 
+Then restart Jenkins:
 
 ![image](https://github.com/user-attachments/assets/91bb8e4b-596f-4ef8-b21e-24cd96676464)
 
 🧪 Before Runing the Pipeline
-🏗️ Create Two Repositories on Docker Hub
-frontend
 
-backend
+🏗️ Create Two Repositories on Docker Hub
+1 - frontend
+
+2 - backend
 
 Both should be empty initially:
 
@@ -204,6 +218,7 @@ Both are blanks now
 
 
 🧩 Trigger Jenkins Build
+
 Click Build With Parameters
 
 Fill in your preferred tags or versions
@@ -212,7 +227,6 @@ Fill in your preferred tags or versions
 
 ✅ Observe the Pipeline
 The stages will appear one by one:
-![image](https://github.com/user-attachments/assets/674bae4c-981b-4b14-a52f-5dd6d02cda1f)
 
 it will shown in Stage view as we installled plugin previously
 
@@ -224,10 +238,10 @@ Check logs via Console Output:
 
 On success, all steps turn green:
 
-![image](https://github.com/user-attachments/assets/dc9084a6-2436-4c8d-9182-23dab043b857)
-
+![image](https://github.com/user-attachments/assets/ca98e29b-2f50-4582-84de-918e541b4507)
 
 📤 Docker Hub: Image Uploaded
+
 Check your Docker Hub:
 
 - Frontend
@@ -237,6 +251,7 @@ Check your Docker Hub:
 ![image](https://github.com/user-attachments/assets/d394b045-2502-45c6-8d29-707c4e72bf92)
 
 🎉 Application Deployed Successfully
+
 You can now access the application running on your server!
 
 ![image](https://github.com/user-attachments/assets/7390cc93-a000-4d41-b014-21872bdce0ea)
@@ -248,6 +263,7 @@ You can now access the application running on your server!
 
 
 ✅ Final Suggestions
+
 Secure your terraform.tfvars using .gitignore
 
 Always use access tokens instead of passwords
